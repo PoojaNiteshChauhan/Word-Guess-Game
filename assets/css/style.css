@@ -1,0 +1,40 @@
+.backgroundimage {
+    background-image: url("../images/jungle\ 5.jpg");
+ height: 1000px;
+    width:  auto;
+background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.head {
+    text-align: center;
+    color: black;
+    text-shadow: 5px 5px red;
+    font-size: 30px;
+    padding-top: 50px;
+}
+
+.header {
+text-align: center;
+color:black;
+font-size: 30px;
+
+}
+
+.game {
+    text-align: center;
+    font-size: 20px;
+
+}
+
+.status {
+    text-align: center;
+    font-size: 30px;
+
+
+
+
+
+
+}
+
