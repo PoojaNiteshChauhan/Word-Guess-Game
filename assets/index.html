@@ -22,9 +22,19 @@
     <h2 class = "header"> <span> Press any key to get started </span> </h2>
             
     <div class = "game">
-        <h3 id = "current-word"> Current Word </h3>
-        <h3 id = "Gueses"> Number of Guesses Remaining </h3>
-        <h3 id = "Letters-gussed"> Letters Already Guessed </h3>
+        <h3 class = "current-word"> Current Word </h3>
+
+        <h3 id ="Answer">     </h3>
+
+        <h3 class = "Gueses"> Number of Guesses Remaining </h3>
+
+        <h3 id = "Remaining">        </h3>
+
+        <h3 class = "Letters-guessed"> Letters Already Guessed </h3>
+
+        <h3 id = "already-guessed">          </h3>
+
+       
     </div>
 
 
@@ -35,21 +45,48 @@
 </div>
 
 <script type="text/javascript" href = "../assets/javascript/game.js">
-var computerChoices = ["Tiger", "Elephant", "Deer" ,"Giraffe", "Bears"];
-var useLetterGuess = [];
-var userGuess;
 
-document.onkeyup = function(event) {
+var computerChoices = ["Tiger", "Elephant", "Deer" ,"Giraffe", "Bear"];
+var useLetterGuess =[];
+var userGuess =" "
+var roundCounter =0;
+var userScore = 0;
 
-userGuess = event.key;
 
 
+function usserAnswer(userChoice){
+    document.getElementById("already-guessed").innerText = userChoice;
+    
+} 
+
+
+
+function createDashes(animalName){
+    var showDash= " ";
+    for (var i= 0; i < animalName.length ; i++)
+    {
+        showDash = showDash + "-";
+    }
+    document.getElementById("Answer").innerText = showDash;
+}
+
+
+createDashes (computerChoices[roundCounter]);
+
+for (var i = 0; i < computerChoices.length; i ++)
+{
+
+    console.log(computerChoices[i], i);
 
 }
 
 
+document.onkeyup = function(event) {
 
-
+userGuess = event.key;
+useLetterGuess.push(userGuess + " ");
+usserAnswer(useLetterGuess);
+}
 </script>     
 
 </body>
