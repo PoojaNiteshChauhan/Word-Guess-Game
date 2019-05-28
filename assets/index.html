@@ -44,49 +44,9 @@
 
 </div>
 
-<script type="text/javascript" href = "../assets/javascript/game.js">
-
-var computerChoices = ["Tiger", "Elephant", "Deer" ,"Giraffe", "Bear"];
-var useLetterGuess =[];
-var userGuess =" "
-var roundCounter =0;
-var userScore = 0;
+<script type="text/javascript" src = "../assets/javascript/game.js">
 
 
-
-function usserAnswer(userChoice){
-    document.getElementById("already-guessed").innerText = userChoice;
-    
-} 
-
-
-
-function createDashes(animalName){
-    var showDash= " ";
-    for (var i= 0; i < animalName.length ; i++)
-    {
-        showDash = showDash + "-";
-    }
-    document.getElementById("Answer").innerText = showDash;
-}
-
-
-createDashes (computerChoices[roundCounter]);
-
-for (var i = 0; i < computerChoices.length; i ++)
-{
-
-    console.log(computerChoices[i], i);
-
-}
-
-
-document.onkeyup = function(event) {
-
-userGuess = event.key;
-useLetterGuess.push(userGuess + " ");
-usserAnswer(useLetterGuess);
-}
 </script>     
 
 </body>
