@@ -4,7 +4,7 @@ var userWord = [];
 var userGuess =" "
 var roundCounter =0;
 var userScore = 0;
-
+var guessesLeft = 0;
 
 
 function usserAnswer(userChoice)
@@ -66,12 +66,24 @@ function playGame()
         userGuess = event.key;
         findletter(userGuess);
     }
-    
-    
+}
+
+function restGame (){
+    guessesLeft = 0;
+    wrongLetter =[];
     
 
+
+    
 
 
 }
+    
+    
+    
+
+
+
+
 
 playGame();
