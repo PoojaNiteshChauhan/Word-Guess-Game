@@ -47,9 +47,11 @@ function playGame (){
             
             if (computerChoices[animalName].indexOf(userLetter )!= -1)
             {
+                console.log(Answer);
                 Answer[computerChoices[animalName].indexOf(userLetter )]=userLetter;
                 document.getElementById("Answer").textContent = Answer.join("");
                 guessesLeft--;
+                document.getElementById("Remaining").textContent = guessesLeft;
                 if (computerChoices[animalName] === Answer.join(''))
                 {
                     wins++;
@@ -67,6 +69,7 @@ function playGame (){
                     }
                 document.getElementById("wrongAnswer").textContent = wrongAnswer;              
                 guessesLeft--;
+                document.getElementById("Remaining").textContent = guessesLeft;
                 
             }       
         }
