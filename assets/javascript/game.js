@@ -1,89 +1,84 @@
-var computerChoices = ["tiger", "Elephant", "Deer" ,"Giraffe", "Bear"];
-var wrongLetter =[];
-var userWord = [];
-var userGuess =" "
-var roundCounter =0;
-var userScore = 0;
-var guessesLeft = 0;
+var computerChoices = ["tiger", "bear", "rat" ,"monkey", "dog","pig","wolf","lion","mouse","lamb"];
+var wrongAnswer =[];
+var Answer = [];
+var wins = 0;
+var losses = 0;
+var guessesLeft = 13;
+var animalName = 0
+var userLetter = ""
 
-
-function usserAnswer(userChoice)
-{
-    document.getElementById("already-guessed").innerText = userChoice;
-} 
-
-function createDashes(animalName)
-{
-    var showDash= " ";
-    for (var i= 0; i < animalName.length ; i++)
-    {
-        showDash = showDash + "-";
-    }
-    document.getElementById("Answer").innerText = showDash;
-}
-
-function fillword(lengthOfWord)
-{
-    for (var i= 0; i < lengthOfWord ; i++)
-    {
-        userWord.push("-");
-    }
-}
-
-createDashes (computerChoices[roundCounter]);
-
-
-function findletter(Guess)
-{
-    var currentWord = computerChoices[roundCounter];
-    
-    console.log(currentWord);
-    console.log(currentWord.indexOf(Guess))
-    console.log(Guess);
-
-
-        if (currentWord.indexOf(Guess) != -1)
-            {
-                userWord[currentWord.indexOf(Guess)]=Guess;
-                document.getElementById("Answer").innerText = userWord;
-                console.log(userWord);               
-            }
-        else 
-            {
-                wrongLetter.push(Guess);
-                document.getElementById("already-guessed").innerText = wrongLetter;
-
-            }
-
-    
-}
-
-function playGame()
-{
-    fillword(computerChoices[roundCounter].length);
-    document.onkeyup = function(event) 
-    {
-        userGuess = event.key;
-        findletter(userGuess);
-    }
-}
 
 function restGame (){
-    guessesLeft = 0;
-    wrongLetter =[];
-    
+    wrongAnswer =[];
+    Answer = [];
+    document.getElementById("Result").textContent = ""
+    createDashes(computerChoices[animalName]);
+    console.log (computerChoices[animalName])
+    console.log (computerChoices[animalName].length)
+    guessesLeft = computerChoices[animalName].length + 5;
+}
 
+function createDashes(animal)
+{
+    var showDash= " ";
+    for (var i= 0; i < animal.length ; i++)
+    {
+        Answer[i] = "-";
+    }
+    document.getElementById("Answer").innerText = Answer.join("");
+}
 
-    
-
+function playGame (){
+    restGame();
+    document.onkeyup = function(event) 
+    {
+        
+        userLetter = event.key.toLowerCase();
+        if (guessesLeft <= 0 )
+        {
+            losses++;
+            updateScoreBoard();
+            document.getElementById("Result").textContent = " You Lose Press Any Key Continue"; 
+            animalName = Math.floor(Math.random()*computerChoices.length);
+            restGame();
+        }
+        else if ((guessesLeft > 0) && (computerChoices[animalName] != Answer.join("")) )
+        {
+            
+            if (computerChoices[animalName].indexOf(userLetter )!= -1)
+            {
+                Answer[computerChoices[animalName].indexOf(userLetter )]=userLetter;
+                document.getElementById("Answer").textContent = Answer.join("");
+                guessesLeft--;
+                if (computerChoices[animalName] === Answer.join(''))
+                {
+                    wins++;
+                    updateScoreBoard();
+                    document.getElementById("Result").textContent = " You Win Press Any Key Continue"; 
+                    animalName = Math.floor(Math.random()*computerChoices.length);
+                    restGame();
+                }               
+            }
+            else
+            {
+                if (wrongAnswer.indexOf(userLetter)=== -1)
+                    {
+                        wrongAnswer.push(userLetter);
+                    }
+                document.getElementById("wrongAnswer").textContent = wrongAnswer;              
+                guessesLeft--;
+                
+            }       
+        }
+        
+    }
 
 }
-    
-    
-    
+
+function updateScoreBoard (){
+    document.getElementById("Win").textContent = " Wins: " + wins;
+    document.getElementById("Losses").textContent = " Loss: " + losses;  
+}
+playGame ();
 
 
-
-
-
-playGame();
